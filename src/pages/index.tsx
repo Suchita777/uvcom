@@ -1,15 +1,28 @@
 import { El_Messiri } from "@next/font/google";
+import Link from "next/link";
+import { HomePageProps, product } from "types";
 
 const elMessiri = El_Messiri({ weight: "700", subsets: ["latin"] });
-
-import { PHASE_PRODUCTION_SERVER } from "next/dist/shared/lib/constants";
-import Link from "next/link";
-import Image from "next/image";
-import { HomePageProps, product } from "types";
 
 export async function getServerSideProps() {
   const query = `{
   productCollection{
+    items{
+      slug
+      title
+      price
+      productImagesCollection{
+        items{
+          url
+          description
+        }
+      }
+    }
+  }
+}`;
+
+  const featuredQuery = `query{
+  productCollection(where:{featured:true}){
     items{
       slug
       title
@@ -36,14 +49,29 @@ export async function getServerSideProps() {
     }
   ).then((res) => res.json());
 
+  const featuredResponse = await fetch(
+    `https://graphql.contentful.com/content/v1/spaces/${process.env.SPACE_ID}/environments/master`,
+    {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+        Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
+      },
+      body: JSON.stringify({ query: featuredQuery }),
+    }
+  ).then((res) => res.json());
+
+  console.log(featuredResponse.data.productCollection.items);
+
   return {
     props: {
       products: response.data.productCollection.items,
+      featuredProducts: featuredResponse.data.productCollection.items,
     },
   };
 }
 
-export default function Home({ products }: HomePageProps) {
+export default function Home({ featuredProducts }: HomePageProps) {
   return (
     <>
       <div>
@@ -80,7 +108,7 @@ export default function Home({ products }: HomePageProps) {
             Loved for style
           </h1>
           <p className="text-xl m-3 italic">
-            It's hard to be nice if you dont feel comfortable!
+            It&apos;s hard to be nice if you dont feel comfortable!
           </p>
           <Link
             href=""
@@ -93,7 +121,7 @@ export default function Home({ products }: HomePageProps) {
           <h1 className="text-4xl font-semibold">New Arrivals</h1>
           <p className="mt-2">Discover the latest ready-to-deliver items.</p>
           <div className="flex overflow-x-scroll overflow-y-hidden mt-6 mb-6">
-            {products.map((product: product) => (
+            {featuredProducts.map((product: product) => (
               <div
                 key={product.slug}
                 className="mr-4 w-80 h-96 shrink-0 border"
