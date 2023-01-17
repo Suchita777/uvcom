@@ -1,10 +1,18 @@
+import Link from "next/link";
+
 export default function NavBar({ font }: any) {
   return (
     <div className="flex w-full justify-between items-center p-2.5 bg-black text-white uppercase fixed text-md">
       <ul className="flex">
-        <li className="m-3 ml-5">Home</li>
-        <li className="m-3 ml-5">Shop</li>
-        <li className="m-3 ml-5">Contact</li>
+        <Link href={"/"}>
+          <li className="m-3 ml-5">Home</li>
+        </Link>
+        <Link href={"/collection"}>
+          <li className="m-3 ml-5">Shop</li>
+        </Link>
+        <Link href={""}>
+          <li className="m-3 ml-5">Contact</li>
+        </Link>
       </ul>
       <h1 className={`${font.className} m-3 text-3xl`}>Youverse</h1>
       <ul className="flex ">
