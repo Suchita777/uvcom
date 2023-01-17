@@ -157,12 +157,15 @@ export default function Home({
         <p className="mt-2">Discover the latest ready-to-deliver items.</p>
         <div className="flex overflow-x-scroll overflow-y-hidden mt-6 mb-6">
           {newArrivalsProducts.map((product: product) => (
-            <div key={product.slug} className="mr-4 w-80 h-96 shrink-0 border">
+            <div
+              key={product.slug}
+              className="mr-4 w-[21rem] h-[29rem] shrink-0 border"
+            >
               <div className="flex flex-col justify-center items-center">
                 <div>
                   <img
                     src={product.productImagesCollection.items[0].url}
-                    className="w-64 h-72 p-3 pt-0"
+                    className="w-[18rem] h-[23rem] p-3 pt-0"
                   />
                 </div>
                 <h1 className="p-4 pt-1 pb-1 text-lg font-semibold mr-auto">
@@ -180,12 +183,15 @@ export default function Home({
         <p className="mt-2">Dresses loved by most of the customers.</p>
         <div className="flex overflow-x-scroll overflow-y-hidden mt-6 mb-6">
           {bestSellerProducts.map((product: product) => (
-            <div key={product.slug} className="mr-4 w-80 h-96 shrink-0 border">
+            <div
+              key={product.slug}
+              className="mr-4 w-[21rem] h-[29rem] shrink-0 border"
+            >
               <div className="flex flex-col justify-center items-center">
                 <div>
                   <img
                     src={product.productImagesCollection.items[0].url}
-                    className="w-64 h-72 p-3 pt-0"
+                    className="w-[18rem] h-[23rem] p-3 pt-0"
                   />
                 </div>
                 <h1 className="p-4 pt-1 pb-1 text-lg font-semibold mr-auto">
@@ -203,12 +209,15 @@ export default function Home({
         <p className="mt-2">Best dresses in our store's closet.</p>
         <div className="flex overflow-x-scroll overflow-y-hidden mt-6 mb-6">
           {featuredProducts.map((product: product) => (
-            <div key={product.slug} className="mr-4 w-80 h-96 shrink-0 border">
+            <div
+              key={product.slug}
+              className="mr-4 w-[21rem] h-[29rem] shrink-0 border"
+            >
               <div className="flex flex-col justify-center items-center">
                 <div>
                   <img
                     src={product.productImagesCollection.items[0].url}
-                    className="w-64 h-72 p-3 pt-0"
+                    className="w-[18rem] h-[23rem] p-3 pt-0"
                   />
                 </div>
                 <h1 className="p-4 pt-1 pb-1 text-lg font-semibold mr-auto">
