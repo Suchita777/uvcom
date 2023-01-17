@@ -145,7 +145,7 @@ export default function Home({
           It&apos;s hard to be nice if you dont feel comfortable!
         </p>
         <Link
-          href=""
+          href="/collection"
           className="border bg-white text-black m-5 rounded hover:bg-transparent hover:text-white"
         >
           <p className="font-semibold p-3 capitalize">shop collection</p>
