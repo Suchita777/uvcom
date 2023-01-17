@@ -206,7 +206,7 @@ export default function Home({
 
       <div className="flex flex-col p-3 m-4">
         <h1 className="text-4xl font-semibold">Featured</h1>
-        <p className="mt-2">Best dresses in our store's closet.</p>
+        <p className="mt-2">Best dresses in our store&apos;s closet.</p>
         <div className="flex overflow-x-scroll overflow-y-hidden mt-6 mb-6">
           {featuredProducts.map((product: product) => (
             <div
