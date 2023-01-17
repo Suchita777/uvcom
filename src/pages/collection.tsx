@@ -75,7 +75,7 @@ export default function Collection({ products }: HomePageProps) {
                 <div>
                   <img
                     src={product.productImagesCollection.items[0].url}
-                    className="w-[12rem] h-[17rem] p-3 pt-0"
+                    className="w-[12rem] h-[16rem] p-3 pt-0"
                   />
                 </div>
                 <h1 className="p-4 pt-1 pb-1 text-sm font-semibold mr-auto">
