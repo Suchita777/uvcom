@@ -1,4 +1,5 @@
 import Layout from "components/layout";
+import Link from "next/link";
 import { HomePageProps, product } from "types";
 
 // const elMessiri = El_Messiri({ weight: "700", subsets: ["latin"] });
@@ -71,20 +72,22 @@ export default function Collection({ products }: HomePageProps) {
               key={product.slug}
               className="m-4 w-[16rem] h-[22rem] shrink-0 border"
             >
-              <div className="flex flex-col justify-center items-center">
-                <div>
-                  <img
-                    src={product.productImagesCollection.items[0].url}
-                    className="w-[12rem] h-[16rem] p-3 pt-0"
-                  />
+              <Link href={`/${product.slug}`}>
+                <div className="flex flex-col justify-center items-center">
+                  <div>
+                    <img
+                      src={product.productImagesCollection.items[0].url}
+                      className="w-[12rem] h-[16rem] p-3 pt-0"
+                    />
+                  </div>
+                  <h1 className="p-4 pt-1 pb-1 text-sm font-semibold mr-auto">
+                    {product.title}
+                  </h1>
+                  <h2 className="p-4 pt-1 text-sm mr-auto">
+                    {product.price} INR
+                  </h2>
                 </div>
-                <h1 className="p-4 pt-1 pb-1 text-sm font-semibold mr-auto">
-                  {product.title}
-                </h1>
-                <h2 className="p-4 pt-1 text-sm mr-auto">
-                  {product.price} INR
-                </h2>
-              </div>
+              </Link>
             </div>
           ))}
         </div>

@@ -26,3 +26,7 @@ export type HomePageProps = {
   newArrivalsProducts: product[];
   bestSellerProducts: product[];
 };
+
+export type ProductPageProps = {
+  product: product;
+};
