@@ -5,6 +5,7 @@ export type product = {
   newArrivals: boolean;
   bestSeller: boolean;
   price: number;
+  sizes: string[];
   description: {
     json: any;
   };
@@ -29,4 +30,11 @@ export type HomePageProps = {
 
 export type ProductPageProps = {
   product: product;
+};
+
+export type CardProps = {
+  link: string;
+  imageUrl: string;
+  title: string;
+  price: number;
 };
