@@ -1,135 +1,29 @@
 // import { El_Messiri } from "@next/font/google";
+import Card from "components/Card";
 import Layout from "components/layout";
 import Link from "next/link";
 import { HomePageProps, product } from "types";
+import { fetchBestSeller } from "utils/fetchBestSeller";
+import { fetchFeatured } from "utils/fetchFeatured";
+import { fetchNewArivals } from "utils/fetchNewArival";
 
 // const elMessiri = El_Messiri({ weight: "700", subsets: ["latin"] });
 
 export async function getServerSideProps() {
-  const query = `{
-  productCollection{
-    items{
-      slug
-      title
-      price
-      productImagesCollection{
-        items{
-          url
-          description
-        }
-      }
-    }
-  }
-}`;
-
-  const featuredQuery = `query{
-  productCollection(where:{featured:true}){
-    items{
-      slug
-      title
-      price
-      productImagesCollection{
-        items{
-          url
-          description
-        }
-      }
-    }
-  }
-}`;
-
-  const newArrivalsQuery = `query{
-  productCollection(where:{newArrivals:true}){
-    items{
-      slug
-      title
-      price
-      productImagesCollection{
-        items{
-          url
-          description
-        }
-      }
-    }
-  }
-}`;
-
-  const bestSellerQuery = `query{
-  productCollection(where:{bestSeller:true}){
-    items{
-      slug
-      title
-      price
-      productImagesCollection{
-        items{
-          url
-          description
-        }
-      }
-    }
-  }
-}`;
-
-  const response = await fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.SPACE_ID}/environments/master`,
-    {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({ query }),
-    }
-  ).then((res) => res.json());
-
-  const featuredResponse = await fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.SPACE_ID}/environments/master`,
-    {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({ query: featuredQuery }),
-    }
-  ).then((res) => res.json());
-
-  const newArrivalsResponse = await fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.SPACE_ID}/environments/master`,
-    {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({ query: newArrivalsQuery }),
-    }
-  ).then((res) => res.json());
-
-  const bestSellerResponse = await fetch(
-    `https://graphql.contentful.com/content/v1/spaces/${process.env.SPACE_ID}/environments/master`,
-    {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-        Authorization: `Bearer ${process.env.ACCESS_TOKEN}`,
-      },
-      body: JSON.stringify({ query: bestSellerQuery }),
-    }
-  ).then((res) => res.json());
+  const newArrivals = await fetchNewArivals();
+  const bestSeller = await fetchBestSeller();
+  const featured = await fetchFeatured();
 
   return {
     props: {
-      products: response.data.productCollection.items,
-      featuredProducts: featuredResponse.data.productCollection.items,
-      newArrivalsProducts: newArrivalsResponse.data.productCollection.items,
-      bestSellerProducts: bestSellerResponse.data.productCollection.items,
+      featuredProducts: featured,
+      newArrivalsProducts: newArrivals,
+      bestSellerProducts: bestSeller,
     },
   };
 }
 
 export default function Home({
-  products,
   featuredProducts,
   newArrivalsProducts,
   bestSellerProducts,
@@ -157,25 +51,13 @@ export default function Home({
         <p className="mt-2">Discover the latest ready-to-deliver items.</p>
         <div className="flex overflow-x-scroll overflow-y-hidden mt-6 mb-6">
           {newArrivalsProducts.map((product: product) => (
-            <div
+            <Card
               key={product.slug}
-              className="mr-4 w-[21rem] h-[29rem] shrink-0 border"
-            >
-              <Link href={`/${product.slug}`}>
-                <div className="flex flex-col justify-center items-center">
-                  <div>
-                    <img
-                      src={product.productImagesCollection.items[0].url}
-                      className="w-[18rem] h-[23rem] p-3 pt-0"
-                    />
-                  </div>
-                  <h1 className="p-4 pt-1 pb-1 text-lg font-semibold mr-auto">
-                    {product.title}
-                  </h1>
-                  <h2 className="p-4 pt-1 mr-auto">{product.price} INR</h2>
-                </div>
-              </Link>
-            </div>
+              link={product.slug}
+              imageUrl={product.productImagesCollection.items[0].url}
+              title={product.title}
+              price={product.price}
+            />
           ))}
         </div>
       </div>
@@ -185,25 +67,13 @@ export default function Home({
         <p className="mt-2">Dresses loved by most of the customers.</p>
         <div className="flex overflow-x-scroll overflow-y-hidden mt-6 mb-6">
           {bestSellerProducts.map((product: product) => (
-            <div
+            <Card
               key={product.slug}
-              className="mr-4 w-[21rem] h-[29rem] shrink-0 border"
-            >
-              <Link href={`/${product.slug}`}>
-                <div className="flex flex-col justify-center items-center">
-                  <div>
-                    <img
-                      src={product.productImagesCollection.items[0].url}
-                      className="w-[18rem] h-[23rem] p-3 pt-0"
-                    />
-                  </div>
-                  <h1 className="p-4 pt-1 pb-1 text-lg font-semibold mr-auto">
-                    {product.title}
-                  </h1>
-                  <h2 className="p-4 pt-1 mr-auto">{product.price} INR</h2>
-                </div>
-              </Link>
-            </div>
+              link={product.slug}
+              imageUrl={product.productImagesCollection.items[0].url}
+              title={product.title}
+              price={product.price}
+            />
           ))}
         </div>
       </div>
@@ -213,25 +83,13 @@ export default function Home({
         <p className="mt-2">Best dresses in our store&apos;s closet.</p>
         <div className="flex overflow-x-scroll overflow-y-hidden mt-6 mb-6">
           {featuredProducts.map((product: product) => (
-            <div
+            <Card
               key={product.slug}
-              className="mr-4 w-[21rem] h-[29rem] shrink-0 border"
-            >
-              <Link href={`/${product.slug}`}>
-                <div className="flex flex-col justify-center items-center">
-                  <div>
-                    <img
-                      src={product.productImagesCollection.items[0].url}
-                      className="w-[18rem] h-[23rem] p-3 pt-0"
-                    />
-                  </div>
-                  <h1 className="p-4 pt-1 pb-1 text-lg font-semibold mr-auto">
-                    {product.title}
-                  </h1>
-                  <h2 className="p-4 pt-1 mr-auto">{product.price} INR</h2>
-                </div>
-              </Link>
-            </div>
+              link={product.slug}
+              imageUrl={product.productImagesCollection.items[0].url}
+              title={product.title}
+              price={product.price}
+            />
           ))}
         </div>
       </div>
