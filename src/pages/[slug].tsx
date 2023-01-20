@@ -16,7 +16,7 @@ export async function getServerSideProps(context: any) {
         	description
         }
       }
-      size
+      sizes
       description{
         json
       }
@@ -51,28 +51,57 @@ export default function ProductPage({ product }: ProductPageProps) {
   return (
     <Layout>
       <div className="flex w-full h-max pt-24 p-10 pb-5 justify-center">
-        <div className="p-4 w-[40%] h-[36rem] flex justify-center items-center">
-          <img
-            src={product.productImagesCollection.items[0].url}
-            className="w-[80%] h-[32rem] "
-          ></img>
-        </div>
-        <div className="p-7 pl-0 w-[60%]">
-          <h1 className="text-5xl font-semibold mb-3">{product.title}</h1>
-          <p className="text-2xl mb-5">{product.price} INR /- </p>
-          <p className="mb-4">Available Sizes : S, M, XL, XXL</p>
-          <p className="document mb-8 text-gray-700 tracking-widest ">
-            {documentToReactComponents(product.description.json)}
-          </p>
-          <div className="flex">
-            <div className="mr-6 border border-black font-semibold w-[10rem] h-[3.5rem] flex items-center justify-center">
+        <div className="flex justify-center w-[85%]">
+          <div className="p-4 w-[40%] h-[36rem] flex justify-center items-center">
+            <img
+              src={product.productImagesCollection.items[0].url}
+              className="w-[85%] h-[32rem] "
+            ></img>
+          </div>
+          <div className="p-7 pl-9 w-[60%]">
+            <h1 className="text-5xl font-semibold mb-3">{product.title}</h1>
+            <p className="text-2xl mb-5">{product.price} INR /- </p>
+            <p className="mb-5">
+              <p className="font-bold ">Available Sizes :</p>
+              <p className="flex mt-2">
+                {product.sizes.map((size) => (
+                  <div
+                    key={size}
+                    className="w-12 mr-2 p-1 border border-slate-600 rounded text-center"
+                  >
+                    <p>{size}</p>
+                  </div>
+                ))}
+              </p>
+            </p>
+            <p className="document mb-8 text-gray-700 tracking-widest ">
+              <p className="font-bold text-black mb-2 mt-7 tracking-normal">
+                Description :{" "}
+              </p>
+              {documentToReactComponents(product.description.json)}
+            </p>
+            <div className="flex">
+              <button className="mr-6 border border-black font-semibold w-[10rem] h-[3.5rem] flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-5 h-5 mr-2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 4.5v15m7.5-7.5h-15"
+                  />
+                </svg>
+                Add to Cart
+              </button>
               <Link href={"#"}>
-                <p>Add to Cart</p>
-              </Link>
-            </div>
-            <div className="border border-black font-semibold w-[10rem] h-[3.5rem] flex items-center justify-center">
-              <Link href={"#"}>
-                <p>Buy Now</p>
+                <div className="border border-black font-semibold w-[10rem] h-[3.5rem] flex items-center justify-center">
+                  <p>Buy Now</p>
+                </div>
               </Link>
             </div>
           </div>
