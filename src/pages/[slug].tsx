@@ -3,12 +3,14 @@ import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Link from "next/link";
 import { ProductPageProps } from "types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { useState } from "react";
 
 export async function getServerSideProps(context: any) {
   const query = `query getProduct($slug:String!) {
   productCollection(where:{slug:$slug}){
     items{
       title
+      slug
       price
       productImagesCollection{
         items{
@@ -38,8 +40,6 @@ export async function getServerSideProps(context: any) {
     }
   ).then((res) => res.json());
 
-  console.log(response.data.productCollection.items[0].productImagesCollection);
-
   return {
     props: {
       product: response.data.productCollection.items[0],
@@ -48,6 +48,8 @@ export async function getServerSideProps(context: any) {
 }
 
 export default function ProductPage({ product }: ProductPageProps) {
+  const [selectedSize, setSelectedSize] = useState<string>();
+
   return (
     <Layout>
       <div className="flex w-full h-max pt-24 p-10 pb-5 justify-center">
@@ -67,7 +69,10 @@ export default function ProductPage({ product }: ProductPageProps) {
                 {product.sizes.map((size) => (
                   <div
                     key={size}
-                    className="w-12 mr-2 p-1 border border-slate-600 rounded text-center"
+                    className={`w-12 mr-2 p-1 border border-slate-600 rounded text-center ${
+                      selectedSize == size ? "bg-black text-white" : ""
+                    }`}
+                    onClick={() => setSelectedSize(size)}
                   >
                     <p>{size}</p>
                   </div>
@@ -98,7 +103,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                 </svg>
                 Add to Cart
               </button>
-              <Link href={"#"}>
+              <Link href={`/checkout/${product.slug}`}>
                 <div className="border border-black font-semibold w-[10rem] h-[3.5rem] flex items-center justify-center">
                   <p>Buy Now</p>
                 </div>
