@@ -12,7 +12,7 @@ export default function Layout({
   return (
     <>
       <Navbar font={elMessiri} />
-      <main>{children}</main>
+      <main className="w-full">{children}</main>
       <Footer font={elMessiri} />
     </>
   );

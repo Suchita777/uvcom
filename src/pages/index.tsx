@@ -30,7 +30,7 @@ export default function Home({
 }: HomePageProps) {
   return (
     <Layout>
-      <div className="bg-[url('/bg1.jpg')] bg-cover pt-20 h-[35rem] w-full flex flex-col justify-center items-center text-white ">
+      <div className="bg-[url('/bg1.jpg')] bg-cover pt-20 h-[35rem] flex flex-col justify-center items-center text-white ">
         <p className="text-lg tracking-widest m-3">Express Yourself</p>
         <h1 className="text-[5rem] font-serif font-semibold capitalize m-4">
           Loved for style
