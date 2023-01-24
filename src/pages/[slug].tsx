@@ -1,9 +1,10 @@
 import Layout from "components/layout";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Link from "next/link";
-import { ProductPageProps } from "types";
+import { CartContextType, ProductPageProps } from "types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { cartContext } from "components/cartProvider";
 
 export async function getServerSideProps(context: any) {
   const query = `query getProduct($slug:String!) {
@@ -49,11 +50,12 @@ export async function getServerSideProps(context: any) {
 
 export default function ProductPage({ product }: ProductPageProps) {
   const [selectedSize, setSelectedSize] = useState<string>();
+  const { cart, addToCart } = useContext(cartContext) as CartContextType;
 
   return (
     <Layout>
-      <div className="flex-col lg:flex lg:flex-row w-full h-max pt-24 lg:pt-24 lg:p-10 pb-5 justify-center">
-        <div className="flex-col lg:flex lg:flex-row justify-center lg:w-[85%]">
+      <div className="flex-col lg:flex lg:flex-row w-full h-max pt-24 lg:pt-24 lg:p-10 lg:pb-4 pb-5 justify-center">
+        <div className="flex-col lg:flex lg:flex-row justify-center lg:items-center lg:w-[85%]">
           <div className="p-4 lg:w-[40%] lg:h-[36rem] flex justify-center items-center">
             <img
               src={product.productImagesCollection.items[0].url}
@@ -90,7 +92,13 @@ export default function ProductPage({ product }: ProductPageProps) {
               </p>
             </p>
             <div className="flex justify-center lg:justify-start">
-              <button className="mr-6 border border-black font-semibold w-[10rem] h-[3.5rem] flex items-center justify-center">
+              <button
+                className="mr-6 border border-black font-semibold w-[10rem] h-[3.5rem] flex items-center justify-center"
+                onClick={() =>
+                  //@ts-ignore
+                  addToCart(product, selectedSize)
+                }
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -107,6 +115,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                 </svg>
                 Add to Cart
               </button>
+
               <Link href={`/checkout/${product.slug}`}>
                 <div className="border border-black font-semibold w-[10rem] h-[3.5rem] flex items-center justify-center">
                   <p>Buy Now</p>
