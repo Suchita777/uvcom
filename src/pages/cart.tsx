@@ -14,7 +14,10 @@ export default function TempPage() {
       </p>
       <div className="w-full min-h-[30rem] flex flex-wrap justify-center p-9 pt-5">
         {cart.map((product) => (
-          <div className="w-[25rem] h-[10rem] lg:h-[14rem] m-3 flex border border-slate-700 mt-3 p-3 rounded">
+          <div
+            key={product.title}
+            className="w-[25rem] h-[10rem] lg:h-[14rem] m-3 flex border border-slate-700 mt-3 p-3 rounded"
+          >
             <img
               src={product.imageUrl}
               className="lg:w-[35%] w-[30%] shrink-0"
