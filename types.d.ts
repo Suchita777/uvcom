@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type product = {
   title: string;
   slug: string;
@@ -37,4 +39,17 @@ export type CardProps = {
   imageUrl: string;
   title: string;
   price: number;
+};
+
+export type CartProps = {
+  imageUrl: string;
+  title: string;
+  price: number;
+  size: string;
+  count: number;
+};
+
+export type CartContextType = {
+  cart: CartProps[];
+  addToCart: (product: product, size: string) => void;
 };
