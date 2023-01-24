@@ -1,10 +1,11 @@
 import Layout from "components/layout";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import Link from "next/link";
-import { CartContextType, ProductPageProps } from "types";
+import { CartContextType, ProductPageProps, product } from "types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { useContext, useState } from "react";
 import { cartContext } from "components/cartProvider";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps(context: any) {
   const query = `query getProduct($slug:String!) {
@@ -52,6 +53,17 @@ export default function ProductPage({ product }: ProductPageProps) {
   const [selectedSize, setSelectedSize] = useState<string>();
   const { cart, addToCart } = useContext(cartContext) as CartContextType;
 
+  const router = useRouter();
+
+  function addtoCart(product: product, size: string) {
+    if (size) {
+      addToCart(product, size);
+      router.push("/cart");
+    } else {
+      alert("Please select a size");
+    }
+  }
+
   return (
     <Layout>
       <div className="flex-col lg:flex lg:flex-row w-full h-max pt-24 lg:pt-24 lg:p-10 lg:pb-4 pb-5 justify-center">
@@ -96,7 +108,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                 className="mr-6 border border-black font-semibold w-[10rem] h-[3.5rem] flex items-center justify-center"
                 onClick={() =>
                   //@ts-ignore
-                  addToCart(product, selectedSize)
+                  addtoCart(product, selectedSize)
                 }
               >
                 <svg
