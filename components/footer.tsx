@@ -44,13 +44,13 @@ export default function Footer({ font }: any) {
           </ul>
         </div>
         <div className="flex justify-center">
-          <ul className="ml-8">
+          <ul className="ml-5 mr-10 lg:mr-0">
             <li className="font-bold text-lg mb-3">Products</li>
             <li className="mb-1 text-sm">New Arrivals</li>
             <li className="mb-1 text-sm">Featured</li>
             <li className="mb-1 text-sm">Best Sellers</li>
           </ul>
-          <ul className="ml-8">
+          <ul className="ml-8 lg:ml-16">
             <li className="font-bold text-lg mb-3">Support</li>
             <li className="mb-1 text-sm">Contact</li>
             <li className="mb-1 text-sm">Delivery</li>

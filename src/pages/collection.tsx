@@ -20,7 +20,7 @@ export default function Collection({ products }: HomePageProps) {
     <Layout>
       <div>
         <div className="pt-28 flex justify-center">
-          <div className="flex justify-between items-center border border-black rounded lg:w-[24rem]">
+          <div className="flex justify-between items-center border border-black rounded w-[19rem] lg:w-[24rem]">
             <input
               placeholder="Help us find you something!"
               className=" p-2 pl-3 lg:w-[22rem] rounded focus:outline-none"
@@ -41,24 +41,24 @@ export default function Collection({ products }: HomePageProps) {
             </svg>
           </div>
         </div>
-        <div className="flex flex-wrap justify-center overflow-y-hidden p-6">
+        <div className="flex flex-wrap justify-center overflow-y-hidden p-3 lg:p-6">
           {products.map((product: product) => (
             <div
               key={product.slug}
-              className="m-4 w-[16rem] h-[22rem] shrink-0 border"
+              className="m-3 lg:m-4 w-[10rem] h-[16rem] lg:w-[16rem] lg:h-[22rem] shrink-0 border"
             >
               <Link href={`/${product.slug}`}>
                 <div className="flex flex-col justify-center items-center">
                   <div>
                     <img
                       src={product.productImagesCollection.items[0].url}
-                      className="w-[12rem] h-[16rem] p-3 pt-0"
+                      className="w-[7.5rem] h-[10rem] lg:w-[12rem] lg:h-[16rem] p-3 pt-0"
                     />
                   </div>
-                  <h1 className="p-4 pt-1 pb-1 text-sm font-semibold mr-auto">
+                  <h1 className="lg:p-4 p-3 pt-0 pb-1 text-sm font-semibold mr-auto">
                     {product.title}
                   </h1>
-                  <h2 className="p-4 pt-1 text-sm mr-auto">
+                  <h2 className="lg:p-4 p-3 pt-1 text-sm mr-auto">
                     {product.price} /- INR
                   </h2>
                 </div>

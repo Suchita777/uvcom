@@ -81,7 +81,9 @@ export default function NavBar({ font }: any) {
 
       <h1 className={`${font.className} m-3 text-3xl`}>Youverse</h1>
       <ul className="flex">
-        <li className="m-3 mr-5 hidden lg:block">Login</li>
+        <Link href={""}>
+          <li className="m-3 mr-5 hidden lg:block">Login</li>
+        </Link>
         <Link href={"/cart"}>
           <li className="m-3 mr-0 lg:mr-5 flex">
             <svg

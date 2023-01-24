@@ -30,24 +30,25 @@ export default function Home({
 }: HomePageProps) {
   return (
     <Layout>
-      <div className="bg-[url('/bg1.jpg')] bg-cover pt-20 lg:h-[35rem] flex flex-col justify-center items-center text-white">
-        <p className="text-lg tracking-widest m-3">Express Yourself</p>
-        <h1 className="text-[5rem] font-serif font-semibold capitalize m-4">
-          Loved for style
+      <div className="bg-[url('/bg3.jpg')] lg:bg-[url('/bg2.jpg')] bg-cover pt-24 lg:pt-20 lg:h-[35rem] flex flex-col justify-center items-center text-white">
+        <p className="text-lg tracking-widest m-3 lg:m-5">Express Yourself</p>
+        <h1 className="flex flex-col lg:flex-row text-6xl lg:text-[5rem] text-center font-serif font-semibold capitalize m-2 lg:m-5">
+          <span className="lg:mr-6">Loved</span>
+          <span className="mt-2 lg:mt-0">for style</span>
         </h1>
-        <p className="text-xl m-3 italic">
+        <p className="text-md lg:text-xl m-3 lg:m-5 italic">
           It&apos;s hard to be nice if you dont feel comfortable!
         </p>
         <Link
           href="/collection"
-          className="border bg-white text-black m-5 rounded hover:bg-transparent hover:text-white"
+          className="border bg-white text-black m-5 mb-7 lg:mb-0 rounded hover:bg-transparent hover:text-white"
         >
           <p className="font-semibold p-3 capitalize">shop collection</p>
         </Link>
       </div>
 
       <div className="flex flex-col p-3 m-4">
-        <h1 className="text-4xl font-semibold">New Arrivals</h1>
+        <h1 className="text-3xl lg:text-4xl font-semibold">New Arrivals</h1>
         <p className="mt-2">Discover the latest ready-to-deliver items.</p>
         <div className="flex overflow-x-scroll overflow-y-hidden mt-6 mb-6">
           {newArrivalsProducts.map((product: product) => (
@@ -63,7 +64,7 @@ export default function Home({
       </div>
 
       <div className="flex flex-col p-3 m-4">
-        <h1 className="text-4xl font-semibold">Best Sellers</h1>
+        <h1 className="text-3xl lg:text-4xl font-semibold">Best Sellers</h1>
         <p className="mt-2">Dresses loved by most of the customers.</p>
         <div className="flex overflow-x-scroll overflow-y-hidden mt-6 mb-6">
           {bestSellerProducts.map((product: product) => (
@@ -79,7 +80,7 @@ export default function Home({
       </div>
 
       <div className="flex flex-col p-3 m-4">
-        <h1 className="text-4xl font-semibold">Featured</h1>
+        <h1 className="text-3xl lg:text-4xl font-semibold">Featured</h1>
         <p className="mt-2">Best dresses in our store&apos;s closet.</p>
         <div className="flex overflow-x-scroll overflow-y-hidden mt-6 mb-6">
           {featuredProducts.map((product: product) => (
@@ -94,8 +95,8 @@ export default function Home({
         </div>
       </div>
 
-      <div className="border-t w-full h-20 lg:h-32 flex justify-between items-center text-slate-700 text-[10px] lg:text-base px-3 lg:px-10 p-14 overflow-x-scroll">
-        <div className="flex items-center">
+      <div className="border-t w-full h-20 lg:h-32 flex justify-between items-center text-slate-700 text-[10px] lg:text-base px-3 lg:px-10 p-14 overflow-x-scroll overflow-y-hidden lg:overflow-hidden">
+        <div className="flex items-center mr-4 lg:mr-0">
           <p className="w-16 lg:w-fit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +119,7 @@ export default function Home({
           </div>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center mr-4 lg:mr-0">
           <p className="w-16 lg:w-fit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +142,7 @@ export default function Home({
           </div>
         </div>
 
-        <div className="flex items-center">
+        <div className="flex items-center mr-4 ml-3 lg:ml-0 lg:mr-0">
           <p className="w-16 lg:w-fit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -160,12 +161,12 @@ export default function Home({
           </p>
           <div className="lg:m-5">
             <h3 className="font-semibold ">Gift Package</h3>
-            <p className="mt-2">Free packaging over 1000INR</p>
+            <p className="mt-2">Free packaging over 1000/- INR</p>
           </div>
         </div>
 
-        <div className="flex items-center">
-          <p className="w-16 lg:w-fit">
+        <div className="flex items-center mr-4 ml-3 lg:ml-0 lg:mr-0">
+          <p className="w-14 lg:w-fit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"

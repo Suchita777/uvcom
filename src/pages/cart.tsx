@@ -9,10 +9,10 @@ export default function TempPage() {
   console.log(cart);
   return (
     <Layout>
-      <p className=" pt-[7rem] pl-[3rem] lg:pl-[4rem] lg:text-lg font-semibold">
+      <p className=" pt-[7rem] pl-[2.5rem] lg:pl-[4rem] lg:text-lg font-semibold">
         Items in your Cart :
       </p>
-      <div className="w-full min-h-[30rem] flex flex-wrap justify-center p-9 pt-5">
+      <div className="w-full min-h-[30rem] flex flex-wrap justify-center p-6 pt-5">
         {cart.map((product) => (
           <div
             key={product.title}
