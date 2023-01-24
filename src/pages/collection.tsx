@@ -20,10 +20,10 @@ export default function Collection({ products }: HomePageProps) {
     <Layout>
       <div>
         <div className="pt-28 flex justify-center">
-          <div className="flex justify-between items-center border border-black rounded w-[24rem]">
+          <div className="flex justify-between items-center border border-black rounded lg:w-[24rem]">
             <input
               placeholder="Help us find you something!"
-              className=" p-2 pl-3 w-[22rem] rounded focus:outline-none"
+              className=" p-2 pl-3 lg:w-[22rem] rounded focus:outline-none"
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +31,7 @@ export default function Collection({ products }: HomePageProps) {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-7 h-7 ml-2 mr-2"
+              className="w-5 h-5 lg:w-7 lg:h-7 ml-2 mr-2"
             >
               <path
                 strokeLinecap="round"
@@ -59,7 +59,7 @@ export default function Collection({ products }: HomePageProps) {
                     {product.title}
                   </h1>
                   <h2 className="p-4 pt-1 text-sm mr-auto">
-                    {product.price} INR
+                    {product.price} /- INR
                   </h2>
                 </div>
               </Link>

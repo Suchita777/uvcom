@@ -30,7 +30,7 @@ export default function Home({
 }: HomePageProps) {
   return (
     <Layout>
-      <div className="bg-[url('/bg1.jpg')] bg-cover pt-20 h-[35rem] w-full flex flex-col justify-center items-center text-white ">
+      <div className="bg-[url('/bg1.jpg')] bg-cover pt-20 lg:h-[35rem] flex flex-col justify-center items-center text-white">
         <p className="text-lg tracking-widest m-3">Express Yourself</p>
         <h1 className="text-[5rem] font-serif font-semibold capitalize m-4">
           Loved for style
@@ -94,16 +94,16 @@ export default function Home({
         </div>
       </div>
 
-      <div className="border-t w-full h-32 flex justify-between items-center text-slate-700 text-sm p-14">
+      <div className="border-t w-full h-20 lg:h-32 flex justify-between items-center text-slate-700 text-[10px] lg:text-base px-3 lg:px-10 p-14 overflow-x-scroll">
         <div className="flex items-center">
-          <p>
+          <p className="w-16 lg:w-fit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-9 h-9"
+              className="w-5 h-5 lg:w-7 lg:h-7"
             >
               <path
                 strokeLinecap="round"
@@ -112,20 +112,21 @@ export default function Home({
               />
             </svg>
           </p>
-          <div className="m-5">
+          <div className="lg:m-5">
             <h3 className="font-semibold">Customer Support</h3>
             <p className="mt-2">Mon - Sat, 10am - 9pm</p>
           </div>
         </div>
+
         <div className="flex items-center">
-          <p>
+          <p className="w-16 lg:w-fit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-9 h-9"
+              className="w-5 h-5 lg:w-7 lg:h-7"
             >
               <path
                 strokeLinecap="round"
@@ -134,20 +135,21 @@ export default function Home({
               />
             </svg>
           </p>
-          <div className="m-5">
+          <div className="lg:m-5">
             <h3 className="font-semibold">Easy Returns</h3>
             <p className="mt-2">Returns extended to 60 days</p>
           </div>
         </div>
+
         <div className="flex items-center">
-          <p>
+          <p className="w-16 lg:w-fit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-9 h-9"
+              className="w-5 h-5 lg:w-7 lg:h-7"
             >
               <path
                 strokeLinecap="round"
@@ -156,20 +158,21 @@ export default function Home({
               />
             </svg>
           </p>
-          <div className="m-5">
+          <div className="lg:m-5">
             <h3 className="font-semibold ">Gift Package</h3>
             <p className="mt-2">Free packaging over 1000INR</p>
           </div>
         </div>
+
         <div className="flex items-center">
-          <p>
+          <p className="w-16 lg:w-fit">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-9 h-9"
+              className="w-5 h-5 lg:w-7 lg:h-7"
             >
               <path
                 strokeLinecap="round"
@@ -178,7 +181,7 @@ export default function Home({
               />
             </svg>
           </p>
-          <div className="m-5">
+          <div className="lg:m-5">
             <h3 className="font-semibold">One-year Warranty</h3>
             <p className="mt-2">No questions asked</p>
           </div>
