@@ -71,7 +71,7 @@ export default function ProductPage({ product }: ProductPageProps) {
           <div className="p-4 lg:w-[40%] lg:h-[36rem] flex justify-center items-center">
             <img
               src={product.productImagesCollection.items[0].url}
-              className="w-[65%] lg:w-[85%] h-[25rem] lg:h-[32rem] "
+              className="w-[65%] lg:w-[85%] h-[22rem] lg:h-[32rem] "
             ></img>
           </div>
           <div className="p-7 pt-0 lg:pl-9 lg:w-[60%]">
