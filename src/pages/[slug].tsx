@@ -1,11 +1,11 @@
 import Layout from "components/layout";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
-import Link from "next/link";
 import { CartContextType, ProductPageProps, product } from "types";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { useContext, useState } from "react";
 import { cartContext } from "components/cartProvider";
 import { useRouter } from "next/router";
+import { createCheckoutSession } from "utils/stripePromise";
 
 export async function getServerSideProps(context: any) {
   const query = `query getProduct($slug:String!) {
@@ -59,6 +59,14 @@ export default function ProductPage({ product }: ProductPageProps) {
     if (size) {
       addToCart(product, size);
       router.push("/cart");
+    } else {
+      alert("Please select a size");
+    }
+  }
+
+  function checkoutProduct(product: product, size: string) {
+    if (size) {
+      createCheckoutSession(product, size);
     } else {
       alert("Please select a size");
     }
@@ -128,11 +136,19 @@ export default function ProductPage({ product }: ProductPageProps) {
                 Add to Cart
               </button>
 
-              <Link href={`/checkout/${product.slug}`}>
+              <button
+                onClick={() =>
+                  checkoutProduct(
+                    product,
+                    //@ts-ignore
+                    selectedSize
+                  )
+                }
+              >
                 <div className="w-fit h-fit p-3 px-8 border border-black font-semibold flex items-center justify-center">
                   <p>Buy Now</p>
                 </div>
-              </Link>
+              </button>
             </div>
           </div>
         </div>
