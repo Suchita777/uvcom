@@ -103,9 +103,9 @@ export default function ProductPage({ product }: ProductPageProps) {
                 {documentToReactComponents(product.description.json)}
               </p>
             </p>
-            <div className="flex justify-center lg:justify-start">
+            <div className="flex justify-evenly lg:justify-start w-full">
               <button
-                className="mr-6 border border-black font-semibold w-[10rem] h-[3.5rem] flex items-center justify-center"
+                className="ww-fit h-fit p-3 pr-4 lg:mr-6 border border-black font-semibold flex items-center justify-center"
                 onClick={() =>
                   //@ts-ignore
                   addtoCart(product, selectedSize)
@@ -117,7 +117,7 @@ export default function ProductPage({ product }: ProductPageProps) {
                   viewBox="0 0 24 24"
                   strokeWidth={1.5}
                   stroke="currentColor"
-                  className="w-5 h-5 mr-2"
+                  className="w-5 h-5 mr-1"
                 >
                   <path
                     strokeLinecap="round"
@@ -129,7 +129,7 @@ export default function ProductPage({ product }: ProductPageProps) {
               </button>
 
               <Link href={`/checkout/${product.slug}`}>
-                <div className="border border-black font-semibold w-[10rem] h-[3.5rem] flex items-center justify-center">
+                <div className="w-fit h-fit p-3 px-8 border border-black font-semibold flex items-center justify-center">
                   <p>Buy Now</p>
                 </div>
               </Link>
