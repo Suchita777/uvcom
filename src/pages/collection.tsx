@@ -1,5 +1,6 @@
 import Layout from "components/layout";
 import Link from "next/link";
+import { useState } from "react";
 import { HomePageProps, product } from "types";
 import { fetchProducts } from "utils/fetchProducts";
 
@@ -16,6 +17,14 @@ export async function getServerSideProps() {
 }
 
 export default function Collection({ products }: HomePageProps) {
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [initProducts, setInitProducts] = useState(products);
+
+  const filteredProducts = initProducts.filter((product) =>
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Layout>
       <div>
@@ -24,6 +33,7 @@ export default function Collection({ products }: HomePageProps) {
             <input
               placeholder="Help us find you something!"
               className=" p-2 pl-3 lg:w-[22rem] rounded focus:outline-none"
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -42,7 +52,7 @@ export default function Collection({ products }: HomePageProps) {
           </div>
         </div>
         <div className="flex flex-wrap justify-center overflow-y-hidden p-2 lg:p-6">
-          {products.map((product: product) => (
+          { filteredProducts.length > 0 ? (filteredProducts.map((product: product) => (
             <div
               key={product.slug}
               className="m-2 lg:m-4 w-[9.7rem] h-[16rem] lg:w-[16rem] lg:h-[21.5rem] shrink-0 border"
@@ -64,7 +74,11 @@ export default function Collection({ products }: HomePageProps) {
                 </div>
               </Link>
             </div>
-          ))}
+          ))) : (
+            <div className="text-center text-red-600 font-semibold p-5">
+              No products found to display.
+            </div>
+          )}
         </div>
       </div>
     </Layout>
